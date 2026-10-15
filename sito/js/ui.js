@@ -64,3 +64,31 @@ export function scarica(nomeFile, contenuto, tipo = "application/json") {
 }
 
 export const casuale = (lista) => lista[Math.floor(Math.random() * lista.length)];
+
+/* Conferma dentro la pagina: confirm() del browser non funziona in tutte le app. */
+export function conferma(testo, etichettaSi = "Conferma") {
+  return new Promise((risolvi) => {
+    const sfondo = document.createElement("div");
+    sfondo.className = "conferma-sfondo";
+    sfondo.innerHTML = `<div class="conferma" role="alertdialog" aria-modal="true" aria-labelledby="conferma-testo">
+      <p id="conferma-testo">${esc(testo)}</p>
+      <div class="azioni">
+        <button type="button" class="pulsante secondario" data-r="0">Annulla</button>
+        <button type="button" class="pulsante" data-r="1">${esc(etichettaSi)}</button>
+      </div></div>`;
+    const chiudi = (r) => {
+      sfondo.remove();
+      document.removeEventListener("keydown", tasto);
+      risolvi(r);
+    };
+    const tasto = (e) => e.key === "Escape" && chiudi(false);
+    sfondo.addEventListener("click", (e) => {
+      if (e.target === sfondo) return chiudi(false);
+      const b = e.target.closest("[data-r]");
+      if (b) chiudi(b.dataset.r === "1");
+    });
+    document.addEventListener("keydown", tasto);
+    document.body.append(sfondo);
+    sfondo.querySelector('[data-r="1"]').focus();
+  });
+}

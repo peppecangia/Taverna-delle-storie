@@ -1,5 +1,5 @@
 /* Strumenti per la partita: funzionano tutti offline e non consumano generazioni. */
-import { esc, campo, numero, selezione, avviso, $ } from "../ui.js";
+import { esc, campo, numero, selezione, avviso, conferma, $ } from "../ui.js";
 import { stato, salvaStato, nuovoId, preferenze } from "../archivio.js";
 import { tira, tiraD20, tiraCaratteristiche } from "../dadi.js";
 import { GRADI_SFIDA, difficolta5e, difficolta35, budget5e } from "../regole.js";
@@ -209,9 +209,12 @@ export function montaTavolo(radice, ridisegna) {
           c.condizioni = c.condizioni.filter((k) => k !== b.dataset.cond);
           break;
         case "azzera":
-          if (!confirm("Cancellare tutti i combattenti?")) return;
-          Object.assign(s, { round: 1, turno: 0, iniziato: false, combattenti: [] });
-          break;
+          conferma("Cancellare tutti i combattenti?", "Cancella").then((si) => {
+            if (!si) return;
+            salvaIniziativa({ round: 1, turno: 0, iniziato: false, combattenti: [] });
+            ridisegna();
+          });
+          return;
         default:
           return;
       }

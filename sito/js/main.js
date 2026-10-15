@@ -1,5 +1,5 @@
 /* Avvio dell'app: navigazione tra le pagine e azioni dei pulsanti. */
-import { $, $$, avviso, datiForm, scarica, esc } from "./ui.js";
+import { $, $$, avviso, datiForm, scarica, esc, conferma } from "./ui.js";
 import * as A from "./archivio.js";
 import { genera, generazioniRimaste, messaggioErrore } from "./api.js";
 import { paginaHome, paginaModulo, pannelloAttesa } from "./viste/crea.js";
@@ -218,7 +218,7 @@ app.addEventListener("click", async (e) => {
       window.print();
       break;
     case "elimina":
-      if (voce && confirm(`Eliminare "${titoloVoce(voce)}"? Non si può annullare.`)) {
+      if (voce && (await conferma(`Eliminare "${titoloVoce(voce)}"? Non si può annullare.`, "Elimina"))) {
         A.elimina(voce.id);
         location.hash = "#/archivio";
       }
@@ -226,7 +226,7 @@ app.addEventListener("click", async (e) => {
     case "sviluppa-sessione": {
       const numero = Number(b.dataset.numero);
       const parte = voce.risultato.struttura.find((p) => p.numero === numero);
-      if (voce.sessioni?.[numero] && !confirm("Rigenerare questa sessione? La versione attuale verrà sostituita.")) return;
+      if (voce.sessioni?.[numero] && !(await conferma("Rigenerare questa sessione? La versione attuale verrà sostituita e userai una generazione.", "Rigenera"))) return;
       generaPerVoce(voce, `${voce.id}:${numero}`, "sessione",
         { ...voce.dati, numero, titolo: voce.risultato.titolo, sinossi: voce.risultato.sinossi, traccia: tracciaSessione(parte), diario: diarioPrecedente(voce, numero) },
         (v, r) => { v.sessioni = { ...(v.sessioni || {}), [numero]: r }; }, b);
