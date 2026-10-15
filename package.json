@@ -1,0 +1,14 @@
+{
+  "name": "taverna-delle-storie",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Generatore di avventure per giochi di ruolo fantasy, compatibile con la 5ª edizione e la 3.5",
+  "scripts": {
+    "verifica": "node --check netlify/functions/avvia.mjs && node --check netlify/functions/genera-background.mjs && node --check netlify/functions/stato.mjs && node scripts/verifica.mjs"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.134.0",
+    "@netlify/blobs": "^11.1.4"
+  }
+}

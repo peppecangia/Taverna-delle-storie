@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Taverna delle storie</title>
+  <meta name="description" content="Avventure, personaggi, mappe, enigmi e incontri per giochi di ruolo fantasy, compatibili con la 5ª edizione e la 3.5.">
+  <meta name="theme-color" content="#1a1511">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/icona-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="icons/icona-192.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <a class="salta" href="#app">Vai al contenuto</a>
+  <main id="app" tabindex="-1"></main>
+  <nav class="menu" aria-label="Menu principale">
+    <a href="#/" data-sezione="crea"><span aria-hidden="true">✦</span>Crea</a>
+    <a href="#/archivio" data-sezione="archivio"><span aria-hidden="true">📚</span>Archivio</a>
+    <a href="#/tavolo" data-sezione="tavolo"><span aria-hidden="true">🎲</span>Al tavolo</a>
+    <a href="#/altro" data-sezione="altro"><span aria-hidden="true">☰</span>Altro</a>
+  </nav>
+  <div id="avvisi" aria-live="polite"></div>
+  <noscript><p style="padding:2rem">Per usare Taverna delle storie serve JavaScript attivo.</p></noscript>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

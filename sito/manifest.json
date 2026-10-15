@@ -1,0 +1,20 @@
+{
+  "name": "Taverna delle storie",
+  "short_name": "Taverna",
+  "description": "Avventure, personaggi, mappe, enigmi e incontri per giochi di ruolo fantasy, compatibili con la 5ª edizione e la 3.5.",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#1a1511",
+  "theme_color": "#1a1511",
+  "lang": "it",
+  "categories": ["games", "entertainment", "utilities"],
+  "icons": [
+    { "src": "icons/icona-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icona-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icona-maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "icons/icona-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
